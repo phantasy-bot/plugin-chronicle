@@ -1,7 +1,7 @@
 {
   "name": "@phantasy/plugin-chronicle",
   "version": "2.0.0",
-  "private": true,
+  "private": false,
   "description": "Chronicle publishing plugin for Phantasy sites and media surfaces.",
   "license": "MIT",
   "type": "module",
@@ -31,6 +31,9 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/phantasy-bot/plugin-chronicle"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "homepage": "https://github.com/phantasy-bot/plugin-chronicle",
   "scripts": {
