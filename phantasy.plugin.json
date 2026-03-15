@@ -1,0 +1,21 @@
+{
+  "name": "@phantasy/plugin-chronicle",
+  "version": "2.0.0",
+  "description": "Chronicle publishing plugin for Phantasy sites and media surfaces.",
+  "displayName": "Chronicle",
+  "workspace": "site",
+  "extensionKind": "capability",
+  "adminSurface": {
+    "tabId": "chronicle",
+    "label": "Chronicle",
+    "section": "site",
+    "workspace": "site",
+    "kind": "generic",
+    "keywords": [
+      "chronicle",
+      "publishing",
+      "content",
+      "site"
+    ]
+  }
+}
