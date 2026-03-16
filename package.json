@@ -60,6 +60,7 @@
     "workspace": "site",
     "extensionKind": "capability",
     "permissions": [],
+    "pluginDependencies": [],
     "platforms": [
       "node"
     ],

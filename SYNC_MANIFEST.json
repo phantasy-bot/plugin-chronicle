@@ -13,6 +13,7 @@
     "site"
   ],
   "permissions": [],
+  "dependencies": [],
   "visibility": "public",
   "repoUrl": "https://github.com/phantasy-bot/plugin-chronicle",
   "sourceOfTruth": "standalone-repo",
@@ -85,6 +86,7 @@
     "workspace": "site",
     "extensionKind": "capability",
     "permissions": [],
+    "pluginDependencies": [],
     "platforms": [
       "node"
     ],
@@ -112,5 +114,5 @@
       }
     }
   },
-  "exportedAt": "2026-03-15T16:20:07.199Z"
+  "exportedAt": "2026-03-16T02:20:40.086Z"
 }
