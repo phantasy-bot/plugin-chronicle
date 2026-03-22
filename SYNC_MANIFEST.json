@@ -1,0 +1,121 @@
+{
+  "slug": "plugin-chronicle",
+  "packageName": "@phantasy/plugin-chronicle",
+  "displayName": "Content",
+  "description": "Content publishing plugin for Phantasy sites and media surfaces.",
+  "workspace": "site",
+  "extensionKind": "capability",
+  "category": "publishing",
+  "tags": [
+    "content",
+    "publishing",
+    "posts",
+    "pages",
+    "site"
+  ],
+  "permissions": [],
+  "dependencies": [],
+  "visibility": "public",
+  "repoUrl": "https://github.com/phantasy-bot/plugin-chronicle",
+  "sourceOfTruth": "standalone-repo",
+  "syncMode": "source-extract",
+  "phase": "source-extracted",
+  "repoExists": true,
+  "npmPublished": false,
+  "sourceExtract": {
+    "sourcePath": "src/plugins/content-plugin.ts",
+    "replacements": [
+      {
+        "from": "import {\n  BasePlugin,\n  type PluginContext,\n  type PluginResponse,\n} from \"@plugins/base-plugin\";",
+        "to": "import {\n  BasePlugin,\n  type PluginContext,\n  type PluginResponse,\n} from \"@phantasy/agent/plugins\";"
+      },
+      {
+        "from": "import type { AgentConfig } from \"@/types/agent-config\";",
+        "to": "import type { AgentConfig } from \"@phantasy/agent/types\";"
+      },
+      {
+        "from": "import { kvService } from \"@/storage/kv/service\";",
+        "to": "import { kvService } from \"@phantasy/agent/plugin-runtime\";"
+      },
+      {
+        "from": "import { ContentService } from \"@/services/content/content-service\";",
+        "to": "import { ContentService } from \"@phantasy/agent/plugin-runtime\";"
+      },
+      {
+        "from": "import { AgentService } from '@/services/core/agent-service';",
+        "to": "import { AgentService } from \"@phantasy/agent/plugin-runtime\";"
+      },
+      {
+        "from": "import {\n  getContentEntryService,\n  type ContentEntry,\n} from \"@/services/content/content-entry-service\";",
+        "to": "import {\n  getContentEntryService,\n  type ContentEntry,\n} from \"@phantasy/agent/plugin-runtime\";"
+      },
+      {
+        "from": "import {\n  hasDeleteAccessRole,\n  hasReadAccessRole,\n  hasWriteAccessRole,\n} from \"@/constants/user-roles\";",
+        "to": "import {\n  hasDeleteAccessRole,\n  hasReadAccessRole,\n  hasWriteAccessRole,\n} from \"@phantasy/agent/plugin-runtime\";"
+      },
+      {
+        "from": "import { logger as baseLogger } from \"@/logger\";",
+        "to": "import {\n  createPluginModuleLogger,\n  getPluginAuthContext,\n  type PluginAuthContext,\n} from \"@phantasy/agent/plugin-runtime\";"
+      },
+      {
+        "from": "export type { ContentEntry } from \"@/services/content/content-entry-service\";",
+        "to": "export type { ContentEntry } from \"@phantasy/agent/plugin-runtime\";"
+      },
+      {
+        "from": "const logger = baseLogger.module(\"ContentPlugin\");",
+        "to": "const logger = createPluginModuleLogger(\"ContentPlugin\");"
+      },
+      {
+        "from": "type ContentAuthContext = {\n  sessionCookieName: string;\n  verifyToken(token: string): Promise<{ roles?: string[] } | null>;\n};",
+        "to": "type ContentAuthContext = PluginAuthContext;"
+      },
+      {
+        "from": "  private async getAuthContext(): Promise<ContentAuthContext> {\n    if (!this.authContextPromise) {\n      this.authContextPromise = Promise.all([\n        import(\"@/config/auth-config\"),\n        import(\"@/services/auth/auth-service\"),\n      ]).then(([{ authConfig }, { authService }]) => ({\n        sessionCookieName: authConfig.session.name,\n        verifyToken: (token: string) => authService.verifyToken(token),\n      }));\n    }\n\n    return this.authContextPromise;\n  }",
+        "to": "  private async getAuthContext(): Promise<ContentAuthContext> {\n    if (!this.authContextPromise) {\n      this.authContextPromise = getPluginAuthContext();\n    }\n\n    return this.authContextPromise;\n  }"
+      }
+    ]
+  },
+  "phantasy": {
+    "displayName": "Content",
+    "category": "publishing",
+    "tags": [
+      "content",
+      "publishing",
+      "posts",
+      "pages",
+      "site"
+    ],
+    "workspace": "site",
+    "extensionKind": "capability",
+    "permissions": [],
+    "pluginDependencies": [],
+    "platforms": [
+      "node"
+    ],
+    "productionReady": false,
+    "adminSurface": {
+      "tabId": "chronicle",
+      "label": "Content",
+      "section": "site",
+      "workspace": "site",
+      "kind": "generic",
+      "keywords": [
+        "content",
+        "publishing",
+        "posts",
+        "pages",
+        "site"
+      ]
+    },
+    "configSchema": {
+      "type": "object",
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "default": true
+        }
+      }
+    }
+  },
+  "exportedAt": "2026-03-22T00:40:18.849Z"
+}

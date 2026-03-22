@@ -1,15 +1,94 @@
 {
   "name": "@phantasy/plugin-chronicle",
-  "version": "1.0.0",
-  "description": "chronicle plugin for Phantasy",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "version": "2.0.1",
+  "private": false,
+  "description": "Content publishing plugin for Phantasy sites and media surfaces.",
+  "license": "MIT",
   "type": "module",
-  "scripts": { "build": "tsc", "test": "vitest run", "prepublishOnly": "npm run build" },
-  "keywords": ["phantasy", "plugin", "chronicle"],
-  "author": "Phantasy",
-  "license": "BUSL-1.1",
-  "repository": { "type": "git", "url": "https://github.com/phantasy-bot/plugin-chronicle" },
-  "peerDependencies": { "@phantasy/core": "^1.0.0" },
-  "devDependencies": { "@types/node": "^20.10.0", "typescript": "^5.3.0", "vitest": "^1.0.0" }
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE",
+    "SECURITY.md",
+    "phantasy.plugin.json"
+  ],
+  "sideEffects": false,
+  "keywords": [
+    "content",
+    "publishing",
+    "posts",
+    "pages",
+    "site"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/phantasy-bot/plugin-chronicle"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "homepage": "https://github.com/phantasy-bot/plugin-chronicle",
+  "scripts": {
+    "build": "tsup",
+    "typecheck": "tsc --noEmit"
+  },
+  "peerDependencies": {
+    "@phantasy/agent": "^2.0.1"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.0",
+    "tsup": "^8.0.0",
+    "typescript": "^5.9.2"
+  },
+  "phantasy": {
+    "displayName": "Content",
+    "category": "publishing",
+    "tags": [
+      "content",
+      "publishing",
+      "posts",
+      "pages",
+      "site"
+    ],
+    "workspace": "site",
+    "extensionKind": "capability",
+    "permissions": [],
+    "pluginDependencies": [],
+    "platforms": [
+      "node"
+    ],
+    "productionReady": false,
+    "adminSurface": {
+      "tabId": "chronicle",
+      "label": "Content",
+      "section": "site",
+      "workspace": "site",
+      "kind": "generic",
+      "keywords": [
+        "content",
+        "publishing",
+        "posts",
+        "pages",
+        "site"
+      ]
+    },
+    "configSchema": {
+      "type": "object",
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "default": true
+        }
+      }
+    }
+  }
 }
